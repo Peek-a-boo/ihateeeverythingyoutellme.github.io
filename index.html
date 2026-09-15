@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F7F5EF">
+<title>오늘 뭐 먹지?</title>
+<style>
+:root{--ink:#202520;--muted:#747a73;--line:#e5e4dc;--paper:#f7f5ef;--green:#214f39;--soft:#e8efe8}
+*{box-sizing:border-box}
+body{margin:0;background:#eae9e4;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+.wrap{width:min(100%,460px);min-height:100vh;margin:auto;background:var(--paper);padding:calc(22px + env(safe-area-inset-top)) 20px calc(28px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between}
+.brand{font-size:14px;font-weight:800;letter-spacing:-.3px}.date{font-size:12px;color:var(--muted)}
+.hero{padding:34px 2px 20px}
+.eyebrow{font-size:13px;color:var(--green);font-weight:800;margin-bottom:8px}
+h1{font-size:34px;line-height:1.13;letter-spacing:-1.7px;margin:0 0 9px;font-weight:850}
+.hero p{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+.controls{display:flex;gap:7px;overflow:auto;padding:3px 0 10px;scrollbar-width:none}.controls::-webkit-scrollbar{display:none}
+.chip{border:1px solid #dadbd4;background:#fbfaf6;padding:9px 11px;border-radius:12px;white-space:nowrap;font-size:12px;font-weight:700}
+.chip.active{background:var(--soft);border-color:#cbd8cb;color:var(--green)}
+.result{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:7px;box-shadow:0 8px 30px rgba(31,46,35,.045)}
+.result-top{display:flex;justify-content:space-between;align-items:center}.label{font-size:12px;font-weight:800;color:var(--green)}.score{font-size:12px;color:var(--muted)}
+.restaurant{margin-top:20px;font-size:13px;color:#60675f}.menu{font-size:27px;line-height:1.2;letter-spacing:-1px;font-weight:850;margin-top:5px}.price{font-size:18px;font-weight:800;margin-top:5px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.tag{font-size:11px;background:#f3f4ef;padding:6px 8px;border-radius:8px;color:#596159}
+.divider{height:1px;background:#ecece6;margin:18px 0}
+.why-title{font-size:12px;font-weight:800;margin-bottom:6px}.why{font-size:14px;line-height:1.55;color:#4d554e}.tip{font-size:12px;line-height:1.5;color:#6c746d;margin-top:10px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+button{appearance:none;border:0;border-radius:15px;padding:15px 12px;font-size:14px;font-weight:800;cursor:pointer}
+.primary{background:var(--green);color:white}.secondary{background:#e9ede7;color:#284c39}
+.preference{margin-top:25px}.section-title{font-size:13px;font-weight:850;margin-bottom:10px}
+.preference-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.pref{background:#fbfaf6;border:1px solid var(--line);border-radius:14px;padding:13px}.pref small{display:block;color:var(--muted);font-size:10px}.pref b{display:block;margin-top:3px;font-size:13px}
+.footer{margin-top:28px;padding-top:15px;border-top:1px solid var(--line);font-size:10px;line-height:1.55;color:#969b95}
+.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#222;color:#fff;padding:10px 14px;border-radius:999px;font-size:12px;opacity:0;pointer-events:none;transition:.22s}.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header><div class="brand">오늘 뭐 먹지?</div><div class="date" id="date"></div></header>
+<section class="hero">
+<div class="eyebrow">선우위원님 점심 큐레이션</div>
+<h1>늦은 점심도<br>대충 먹지는 말기.</h1>
+<p>광화문 근처에서 혼자 편하게.<br>가격과 식단을 같이 챙긴 메뉴만 골랐어요.</p>
+</section>
+<div class="controls">
+<span class="chip active">12,000원 이하</span><span class="chip active">혼밥</span><span class="chip active">식단 관리</span><span class="chip active">샐러드 단독 제외</span>
+</div>
+
+<section class="result">
+<div class="result-top"><span class="label">TODAY'S PICK</span><span class="score" id="score"></span></div>
+<div class="restaurant" id="place"></div><div class="menu" id="menu"></div><div class="price" id="price"></div>
+<div class="tags" id="tags"></div>
+<div class="divider"></div>
+<div class="why-title">이 메뉴를 고른 이유</div><div class="why" id="why"></div><div class="tip" id="tip"></div>
+</section>
+
+<div class="actions"><button class="primary" onclick="randomPick()">다른 메뉴 뽑기</button><button class="secondary" onclick="dietPick()">식단 우선 추천</button></div>
+
+<section class="preference">
+<div class="section-title">추천 기준</div>
+<div class="preference-grid">
+<div class="pref"><small>PRICE</small><b>가성비 좋은 한 끼</b></div>
+<div class="pref"><small>STYLE</small><b>샐러드만은 제외</b></div>
+<div class="pref"><small>DINING</small><b>혼자 먹기 편하게</b></div>
+<div class="pref"><small>FAVORITE</small><b>웰믹스 계열 선호</b></div>
+</div>
+</section>
+<div class="footer">메뉴와 가격은 매장 운영에 따라 달라질 수 있습니다. 방문 전 최신 영업 정보 확인을 권장합니다.<br>Lunch shortlist · Gwanghwamun</div>
+</main><div class="toast" id="toast">새 메뉴를 골랐어요</div>
+<script>
+const data=[
+{p:"웰믹스 광화문점",m:"에브리데이 믹스볼",price:"10,900원",tags:["현미·귀리밥","커스텀","균형식"],why:"밥과 채소, 토핑을 한 그릇에 챙길 수 있어 식단 중에도 ‘제대로 한 끼 먹었다’는 느낌이 있는 선택.",tip:"주문 팁 · 드레싱은 가볍게, 단백질 토핑을 우선으로.",fit:5},
+{p:"웰믹스 광화문점",m:"단백질 듬뿍 믹스볼",price:"12,900원",tags:["고단백","닭가슴살","든든한 한 끼"],why:"바쁜 날 단백질을 확실하게 챙기면서도 과하게 무겁지 않은 메뉴. 웰믹스를 좋아한다면 실패 확률이 낮아요.",tip:"주문 팁 · 소스 양을 조절하면 식단용으로 더 깔끔합니다.",fit:5},
+{p:"프레퍼스 다이어트푸드 광화문점",m:"다이어트 한 끼",price:"1만원대",tags:["식단식","단백질","혼밥"],why:"메뉴 자체가 식단 관리에 맞춰져 있어 별도로 계산하고 고민할 일이 적은 편. 늦은 점심에 빠르게 먹기에도 좋아요.",tip:"주문 팁 · 단백질 중심 메뉴에 밥 양을 적당히.",fit:5},
+{p:"포케올데이 광화문점",m:"육회 프로틴 포케",price:"11,900원",tags:["육회","프로틴","한 그릇"],why:"야채만 먹는 샐러드보다는 확실히 식사에 가까우면서 단백질까지 챙길 수 있는 선택.",tip:"주문 팁 · 현미밥 베이스와 가벼운 소스 조합 추천.",fit:5},
+{p:"온히어 온샐러드앤포케 광화문점",m:"수비드 목살 현미밥",price:"13,800원",tags:["수비드 목살","현미밥","따뜻한 식사"],why:"차가운 샐러드가 당기지 않는 날 좋은 카드. 따뜻한 밥과 고기가 있어 만족감도 충분합니다.",tip:"주문 팁 · 소스는 따로 받아 필요한 만큼만.",fit:5},
+{p:"광화문국밥",m:"국밥",price:"1만원대",tags:["한식","따뜻한 식사","혼밥"],why:"포케나 식단식이 질린 날을 위한 한식 선택. 밥과 국물 양만 조절하면 식단 흐름을 크게 깨지 않고 먹을 수 있어요.",tip:"먹는 팁 · 밥은 조금 덜고 건더기 위주로.",fit:3},
+{p:"미진",m:"메밀 메뉴",price:"1만원대",tags:["메밀","가벼운 면","혼밥"],why:"면이 당기는 날 무작정 참는 대신 고를 수 있는 현실적인 옵션. 메뉴 선택의 피로를 줄여주는 탈출 카드입니다.",tip:"먹는 팁 · 면은 적당히, 다른 끼니에서 단백질을 보충해 주세요.",fit:2}
+];
+let prev=-1;
+function show(x){
+place.textContent=x.p;menu.textContent=x.m;price.textContent=x.price;
+tags.innerHTML=x.tags.map(t=>`<span class="tag">${t}</span>`).join("");
+why.textContent=x.why;tip.textContent=x.tip;score.textContent=x.fit>=5?"식단 적합도 높음":"가끔은 괜찮음";
+toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),850)
+}
+function randomPick(){const pool=data.filter(x=>!['13,800원','12,900원'].includes(x.price));let i;do{i=Math.floor(Math.random()*pool.length)}while(i===prev&&pool.length>1);prev=i;show(pool[i])}
+function dietPick(){const d=data.filter(x=>x.fit===5&&!['13,800원','12,900원'].includes(x.price));show(d[Math.floor(Math.random()*d.length)])}
+const now=new Date();date.textContent=`${now.getMonth()+1}월 ${now.getDate()}일`;
+randomPick();
+</script>
+</body></html>
