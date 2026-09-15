@@ -3,91 +3,87 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#F7F5EF">
-<title>오늘 뭐 먹지?</title>
+<meta name="theme-color" content="#f7f5ef">
+<meta name="description" content="광화문에서 식단 관리하며 먹을 수 있는 점심 메뉴 추천">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23214f39'/%3E%3Cpath d='M18 18h28v8c0 12-6 20-14 20S18 38 18 26v-8Z' fill='%23fff'/%3E%3Cpath d='M32 18v28M20 27h24' stroke='%23d7e6d7' stroke-width='3'/%3E%3C/svg%3E">
+<title>오늘 뭐 먹지? · 광화문 식단 점심</title>
 <style>
-:root{--ink:#202520;--muted:#747a73;--line:#e5e4dc;--paper:#f7f5ef;--green:#214f39;--soft:#e8efe8}
-*{box-sizing:border-box}
-body{margin:0;background:#eae9e4;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
-.wrap{width:min(100%,460px);min-height:100vh;margin:auto;background:var(--paper);padding:calc(22px + env(safe-area-inset-top)) 20px calc(28px + env(safe-area-inset-bottom))}
-header{display:flex;align-items:center;justify-content:space-between}
-.brand{font-size:14px;font-weight:800;letter-spacing:-.3px}.date{font-size:12px;color:var(--muted)}
-.hero{padding:34px 2px 20px}
-.eyebrow{font-size:13px;color:var(--green);font-weight:800;margin-bottom:8px}
-h1{font-size:34px;line-height:1.13;letter-spacing:-1.7px;margin:0 0 9px;font-weight:850}
-.hero p{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
-.controls{display:flex;gap:7px;overflow:auto;padding:3px 0 10px;scrollbar-width:none}.controls::-webkit-scrollbar{display:none}
-.chip{border:1px solid #dadbd4;background:#fbfaf6;padding:9px 11px;border-radius:12px;white-space:nowrap;font-size:12px;font-weight:700}
-.chip.active{background:var(--soft);border-color:#cbd8cb;color:var(--green)}
-.result{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:7px;box-shadow:0 8px 30px rgba(31,46,35,.045)}
-.result-top{display:flex;justify-content:space-between;align-items:center}.label{font-size:12px;font-weight:800;color:var(--green)}.score{font-size:12px;color:var(--muted)}
-.restaurant{margin-top:20px;font-size:13px;color:#60675f}.menu{font-size:27px;line-height:1.2;letter-spacing:-1px;font-weight:850;margin-top:5px}.price{font-size:18px;font-weight:800;margin-top:5px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.tag{font-size:11px;background:#f3f4ef;padding:6px 8px;border-radius:8px;color:#596159}
-.divider{height:1px;background:#ecece6;margin:18px 0}
-.why-title{font-size:12px;font-weight:800;margin-bottom:6px}.why{font-size:14px;line-height:1.55;color:#4d554e}.tip{font-size:12px;line-height:1.5;color:#6c746d;margin-top:10px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-button{appearance:none;border:0;border-radius:15px;padding:15px 12px;font-size:14px;font-weight:800;cursor:pointer}
-.primary{background:var(--green);color:white}.secondary{background:#e9ede7;color:#284c39}
-.preference{margin-top:25px}.section-title{font-size:13px;font-weight:850;margin-bottom:10px}
-.preference-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.pref{background:#fbfaf6;border:1px solid var(--line);border-radius:14px;padding:13px}.pref small{display:block;color:var(--muted);font-size:10px}.pref b{display:block;margin-top:3px;font-size:13px}
-.footer{margin-top:28px;padding-top:15px;border-top:1px solid var(--line);font-size:10px;line-height:1.55;color:#969b95}
-.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#222;color:#fff;padding:10px 14px;border-radius:999px;font-size:12px;opacity:0;pointer-events:none;transition:.22s}.toast.show{opacity:1;transform:translate(-50%,0)}
+:root{--ink:#202520;--muted:#747a73;--line:#e3e4dc;--paper:#f7f5ef;--green:#214f39;--soft:#e8efe8;--white:#fff;--danger:#8b3b32}
+*{box-sizing:border-box}html{background:#eae9e4}body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+button,input{font:inherit}.wrap{width:min(100%,480px);min-height:100vh;margin:auto;background:var(--paper);padding:calc(22px + env(safe-area-inset-top)) 20px calc(32px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between}.brand{font-size:.875rem;font-weight:850;letter-spacing:-.02em}.date{font-size:.75rem;color:var(--muted)}
+.hero{padding:30px 2px 20px}.eyebrow{font-size:.8125rem;color:var(--green);font-weight:850;margin-bottom:8px}h1{font-size:2.05rem;line-height:1.14;letter-spacing:-.055em;margin:0 0 10px;font-weight:850}.hero p{margin:0;color:var(--muted);font-size:.9375rem;line-height:1.55}
+.section{margin-top:20px}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:9px}.section-title{font-size:.8125rem;font-weight:850}.section-note{font-size:.6875rem;color:var(--muted)}
+.categories{display:flex;gap:7px;overflow:auto;padding:2px 0 7px;scrollbar-width:none}.categories::-webkit-scrollbar{display:none}.chip{appearance:none;border:1px solid #dadbd4;background:#fbfaf6;padding:9px 12px;border-radius:12px;white-space:nowrap;font-size:.8125rem;font-weight:750;color:var(--ink);cursor:pointer}.chip[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.criteria{display:grid;grid-template-columns:1fr 1fr;gap:7px}.check{position:relative;display:flex;align-items:center;min-height:45px;background:#fbfaf6;border:1px solid var(--line);border-radius:13px;padding:10px 10px 10px 35px;font-size:.8rem;font-weight:720;cursor:pointer;line-height:1.25}.check input{position:absolute;left:11px;width:16px;height:16px;margin:0;accent-color:var(--green)}.check:has(input:checked){background:var(--soft);border-color:#c4d3c6;color:var(--green)}
+.result{background:var(--white);border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:21px;box-shadow:0 9px 32px rgba(31,46,35,.05)}.result-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.label{font-size:.6875rem;font-weight:850;color:var(--green);letter-spacing:.05em}.score{font-size:.75rem;color:var(--muted);text-align:right}
+.restaurant{margin-top:18px;font-size:.8125rem;color:#60675f}.menu{font-size:1.72rem;line-height:1.2;letter-spacing:-.04em;font-weight:850;margin-top:5px}.price{font-size:1.1rem;font-weight:820;margin-top:6px}.meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.meta span{font-size:.75rem;color:#505950}.distance::before{content:"↗ ";color:var(--green);font-weight:900}.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}.tag{font-size:.6875rem;background:#f2f4ef;padding:6px 8px;border-radius:8px;color:#596159}.divider{height:1px;background:#ecece6;margin:17px 0}.copy-title{font-size:.75rem;font-weight:850;margin-bottom:6px}.copy{font-size:.875rem;line-height:1.58;color:#4d554e}.tip{font-size:.8rem;line-height:1.55;color:#667067;margin-top:12px;padding:11px 12px;background:#f7f8f4;border-radius:11px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}.actions button{appearance:none;border:0;border-radius:15px;padding:14px 9px;font-size:.875rem;font-weight:820;cursor:pointer}.primary{background:var(--green);color:white}.secondary{background:#e9ede7;color:#284c39}.reject{grid-column:1/-1;background:transparent!important;border:1px solid #dedfd8!important;color:#6b716b;font-size:.8125rem!important;padding:11px!important}.reject:hover{color:var(--danger)}
+.empty{display:none;background:#fff;border:1px dashed #cfd2ca;border-radius:20px;padding:22px;margin-top:21px;text-align:center}.empty.show{display:block}.empty b{display:block;font-size:1rem}.empty p{font-size:.8125rem;line-height:1.5;color:var(--muted);margin:7px 0 13px}.empty button{border:0;background:var(--soft);color:var(--green);font-weight:800;padding:10px 13px;border-radius:12px;cursor:pointer}
+.footer{margin-top:28px;padding-top:15px;border-top:1px solid var(--line);font-size:.6875rem;line-height:1.6;color:#8b918b}.footer strong{color:#697069}.toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,20px);background:#222;color:#fff;padding:10px 14px;border-radius:999px;font-size:.75rem;opacity:0;pointer-events:none;transition:.22s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:350px){.criteria{grid-template-columns:1fr}h1{font-size:1.8rem}.menu{font-size:1.5rem}}@media(prefers-reduced-motion:reduce){.toast{transition:none}}
 </style>
 </head>
 <body>
 <main class="wrap">
-<header><div class="brand">오늘 뭐 먹지?</div><div class="date" id="date"></div></header>
-<section class="hero">
-<div class="eyebrow">선우위원님 점심 큐레이션</div>
-<h1>늦은 점심도<br>대충 먹지는 말기.</h1>
-<p>광화문 근처에서 혼자 편하게.<br>가격과 식단을 같이 챙긴 메뉴만 골랐어요.</p>
-</section>
-<div class="controls">
-<span class="chip active">12,000원 이하</span><span class="chip active">혼밥</span><span class="chip active">식단 관리</span><span class="chip active">샐러드 단독 제외</span>
-</div>
+  <header><div class="brand">오늘 뭐 먹지?</div><div class="date" id="date"></div></header>
+  <section class="hero"><div class="eyebrow">선우위원님 점심 큐레이션</div><h1>식단은 지키고,<br>점심은 제대로.</h1><p>광화문 평범한 식당에서도<br>덜 부담스럽게 먹을 메뉴만 골랐어요.</p></section>
 
-<section class="result">
-<div class="result-top"><span class="label">TODAY'S PICK</span><span class="score" id="score"></span></div>
-<div class="restaurant" id="place"></div><div class="menu" id="menu"></div><div class="price" id="price"></div>
-<div class="tags" id="tags"></div>
-<div class="divider"></div>
-<div class="why-title">이 메뉴를 고른 이유</div><div class="why" id="why"></div><div class="tip" id="tip"></div>
-</section>
+  <section class="section" aria-labelledby="categoryTitle"><div class="section-head"><div class="section-title" id="categoryTitle">메뉴 분류</div></div><div class="categories" id="categories"></div></section>
+  <section class="section" aria-labelledby="criteriaTitle"><div class="section-head"><div class="section-title" id="criteriaTitle">추천 기준</div><div class="section-note">여러 개 선택 가능</div></div><div class="criteria" id="criteria"></div></section>
 
-<div class="actions"><button class="primary" onclick="randomPick()">다른 메뉴 뽑기</button><button class="secondary" onclick="dietPick()">식단 우선 추천</button></div>
-
-<section class="preference">
-<div class="section-title">추천 기준</div>
-<div class="preference-grid">
-<div class="pref"><small>PRICE</small><b>가성비 좋은 한 끼</b></div>
-<div class="pref"><small>STYLE</small><b>샐러드만은 제외</b></div>
-<div class="pref"><small>DINING</small><b>혼자 먹기 편하게</b></div>
-<div class="pref"><small>FAVORITE</small><b>웰믹스 계열 선호</b></div>
-</div>
-</section>
-<div class="footer">메뉴와 가격은 매장 운영에 따라 달라질 수 있습니다. 방문 전 최신 영업 정보 확인을 권장합니다.<br>Lunch shortlist · Gwanghwamun</div>
-</main><div class="toast" id="toast">새 메뉴를 골랐어요</div>
+  <section class="result" id="result" aria-live="polite">
+    <div class="result-top"><span class="label">TODAY'S PICK</span><span class="score" id="score"></span></div>
+    <div class="restaurant" id="place"></div><div class="menu" id="menu"></div><div class="price" id="price"></div>
+    <div class="meta"><span id="category"></span><span class="distance" id="distance"></span></div><div class="tags" id="tags"></div>
+    <div class="divider"></div><div class="copy-title">식단에 맞는 이유</div><div class="copy" id="why"></div><div class="tip" id="tip"></div>
+  </section>
+  <section class="empty" id="empty"><b>지금 조건으로는 후보가 없어요.</b><p>조건을 하나만 풀어보세요. 예산 또는 음식 분류부터 바꾸면 선택지가 가장 많이 늘어요.</p><button type="button" id="relax">기본 조건으로 돌아가기</button></section>
+  <div class="actions" id="actions"><button class="primary" type="button" id="pick">다른 메뉴 뽑기</button><button class="secondary" type="button" id="best">조건에 딱 맞게</button><button class="reject" type="button" id="reject">이건 별로예요 · 오늘 후보에서 제외</button></div>
+  <div class="footer"><strong>출발점</strong> 한국생산성본부(KPC), 서울 종로구 새문안로5가길 32<br>거리와 시간은 공개 지도상 주소를 바탕으로 한 예상치입니다. 메뉴·가격·영업시간은 <strong>2026년 9월 공개 정보 기준</strong>이며 매장 사정에 따라 달라질 수 있어요. 방문 전 확인해 주세요.</div>
+</main><div class="toast" id="toast"></div>
 <script>
-const data=[
-{p:"웰믹스 광화문점",m:"에브리데이 믹스볼",price:"10,900원",tags:["현미·귀리밥","커스텀","균형식"],why:"밥과 채소, 토핑을 한 그릇에 챙길 수 있어 식단 중에도 ‘제대로 한 끼 먹었다’는 느낌이 있는 선택.",tip:"주문 팁 · 드레싱은 가볍게, 단백질 토핑을 우선으로.",fit:5},
-{p:"웰믹스 광화문점",m:"단백질 듬뿍 믹스볼",price:"12,900원",tags:["고단백","닭가슴살","든든한 한 끼"],why:"바쁜 날 단백질을 확실하게 챙기면서도 과하게 무겁지 않은 메뉴. 웰믹스를 좋아한다면 실패 확률이 낮아요.",tip:"주문 팁 · 소스 양을 조절하면 식단용으로 더 깔끔합니다.",fit:5},
-{p:"프레퍼스 다이어트푸드 광화문점",m:"다이어트 한 끼",price:"1만원대",tags:["식단식","단백질","혼밥"],why:"메뉴 자체가 식단 관리에 맞춰져 있어 별도로 계산하고 고민할 일이 적은 편. 늦은 점심에 빠르게 먹기에도 좋아요.",tip:"주문 팁 · 단백질 중심 메뉴에 밥 양을 적당히.",fit:5},
-{p:"포케올데이 광화문점",m:"육회 프로틴 포케",price:"11,900원",tags:["육회","프로틴","한 그릇"],why:"야채만 먹는 샐러드보다는 확실히 식사에 가까우면서 단백질까지 챙길 수 있는 선택.",tip:"주문 팁 · 현미밥 베이스와 가벼운 소스 조합 추천.",fit:5},
-{p:"온히어 온샐러드앤포케 광화문점",m:"수비드 목살 현미밥",price:"13,800원",tags:["수비드 목살","현미밥","따뜻한 식사"],why:"차가운 샐러드가 당기지 않는 날 좋은 카드. 따뜻한 밥과 고기가 있어 만족감도 충분합니다.",tip:"주문 팁 · 소스는 따로 받아 필요한 만큼만.",fit:5},
-{p:"광화문국밥",m:"국밥",price:"1만원대",tags:["한식","따뜻한 식사","혼밥"],why:"포케나 식단식이 질린 날을 위한 한식 선택. 밥과 국물 양만 조절하면 식단 흐름을 크게 깨지 않고 먹을 수 있어요.",tip:"먹는 팁 · 밥은 조금 덜고 건더기 위주로.",fit:3},
-{p:"미진",m:"메밀 메뉴",price:"1만원대",tags:["메밀","가벼운 면","혼밥"],why:"면이 당기는 날 무작정 참는 대신 고를 수 있는 현실적인 옵션. 메뉴 선택의 피로를 줄여주는 탈출 카드입니다.",tip:"먹는 팁 · 면은 적당히, 다른 끼니에서 단백질을 보충해 주세요.",fit:2}
+const menus=[
+ {id:1,p:'감나무집',m:'닭곰탕',price:9000,c:'한식',d:400,min:6,a:'서울 종로구 새문안로 83-2',t:['고단백','저지방','든든하게','10,000원 이하','혼밥 편함'],why:'닭고기 건더기로 단백질을 챙기기 좋고, 튀김이나 볶음보다 지방 부담이 적은 따뜻한 한 끼예요.',tip:'이렇게 먹으면 더 좋음 · 밥은 반 공기부터, 국물은 절반만 먹고 닭고기 건더기를 먼저 드세요.'},
+ {id:2,p:'감나무집',m:'반계탕',price:10000,c:'한식',d:400,min:6,a:'서울 종로구 새문안로 83-2',t:['고단백','저지방','든든하게','10,000원 이하'],why:'닭 반 마리가 들어가 포만감과 단백질을 함께 챙길 수 있어요.',tip:'이렇게 먹으면 더 좋음 · 껍질은 조금 덜고, 죽이나 밥은 반만 드세요.'},
+ {id:3,p:'화목순대국 광화문1호점',m:'순대국',price:10000,c:'한식',d:230,min:4,a:'서울 종로구 새문안로5길 11',t:['고단백','든든하게','10,000원 이하','KPC에서 가까운 곳','혼밥 편함','늦은 점심 가능'],why:'가까운 곳에서 고기 건더기 중심으로 먹으면 단백질과 포만감을 얻을 수 있는 현실적인 국밥 선택이에요.',tip:'이렇게 먹으면 더 좋음 · 밥은 반 공기, 다대기는 빼고 국물보다 건더기 위주로 드세요.'},
+ {id:4,p:'오한수 우육면가 광화문점',m:'홍콩우육탕면',price:10500,c:'중식',d:550,min:8,a:'서울 종로구 새문안로 92',t:['고단백','든든하게','혼밥 편함','늦은 점심 가능'],why:'소고기 고명이 있어 일반 짜장면·볶음밥보다 단백질을 챙기기 쉬운 면 메뉴예요.',tip:'이렇게 먹으면 더 좋음 · 면은 2/3만, 고기와 청경채를 먼저 먹고 국물은 남기세요.'},
+ {id:5,p:'미진',m:'메밀국수',price:11000,c:'일식',d:850,min:12,a:'서울 종로구 종로 19',t:['저지방','혼밥 편함','늦은 점심 가능'],why:'튀김이나 덮밥보다 지방 부담이 낮고, 면이 당기는 날 식단을 크게 벗어나지 않는 선택이에요.',tip:'이렇게 먹으면 더 좋음 · 첫 판 위주로 천천히 먹고 장국은 적게, 단백질은 다른 끼니에 보충하세요.'},
+ {id:6,p:'청진옥',m:'해장국',price:12000,c:'한식',d:850,min:12,a:'서울 종로구 종로3길 32',t:['고단백','든든하게','혼밥 편함','늦은 점심 가능'],why:'고기와 선지로 단백질과 철분을 챙길 수 있고 혼자 빠르게 먹기 편해요.',tip:'이렇게 먹으면 더 좋음 · 밥은 반 공기만 말고, 국물과 소금은 줄이세요.'},
+ {id:7,p:'광화문국밥',m:'돼지국밥',price:12000,c:'한식',d:650,min:9,a:'서울 중구 세종대로21길 53',t:['고단백','든든하게','혼밥 편함'],why:'살코기와 밥 양을 직접 조절하면 포케가 질린 날에도 식단 흐름을 이어갈 수 있어요.',tip:'이렇게 먹으면 더 좋음 · 밥은 따로 받아 반만, 새우젓과 국물은 최소로 드세요.'},
+ {id:8,p:'샐러디 광화문점',m:'탄단지 샐러디',price:8900,c:'건강식',d:650,min:9,a:'서울 종로구 종로1길 일대',t:['고단백','저지방','탄수화물 적게','채소 충분','10,000원 이하','혼밥 편함'],why:'닭가슴살·달걀·채소를 한 번에 챙겨 영양 구성이 분명한 메뉴예요.',tip:'이렇게 먹으면 더 좋음 · 드레싱은 따로 받아 절반만 사용하세요.',salad:true},
+ {id:9,p:'샐러디 광화문점',m:'우삼겹 웜볼',price:9900,c:'건강식',d:650,min:9,a:'서울 종로구 종로1길 일대',t:['고단백','채소 충분','든든하게','10,000원 이하','혼밥 편함','샐러드 단독 제외'],why:'곡물과 따뜻한 고기, 채소가 함께 있어 샐러드만으로 부족한 날 한 끼 만족감이 좋아요.',tip:'이렇게 먹으면 더 좋음 · 곡물은 기본량, 소스는 절반만 넣으세요.'},
+ {id:10,p:'슬로우캘리 광화문점',m:'오리엔탈 두부 포케',price:9500,c:'건강식',d:720,min:10,a:'서울 종로구 종로1길 일대',t:['저지방','채소 충분','10,000원 이하','혼밥 편함','샐러드 단독 제외'],why:'두부와 채소, 곡물을 함께 먹어 가볍지만 식사다운 포케예요.',tip:'이렇게 먹으면 더 좋음 · 메밀면보다 현미밥 소량을 고르고 소스는 따로 받으세요.'},
+ {id:11,p:'프레퍼스 다이어트푸드 광화문점',m:'닭가슴살 현미밥',price:9900,c:'건강식',d:750,min:11,a:'서울 종로구 종로1길 일대',t:['고단백','저지방','채소 충분','든든하게','10,000원 이하','혼밥 편함','샐러드 단독 제외'],why:'닭가슴살과 현미밥이 정량 구성돼 별도 계산 없이 단백질과 탄수화물 양을 관리하기 쉬워요.',tip:'이렇게 먹으면 더 좋음 · 소스는 반만, 운동량이 적은 날은 밥을 조금 남기세요.'},
+ {id:12,p:'포케올데이 광화문점',m:'닭가슴살 포케',price:10900,c:'건강식',d:700,min:10,a:'서울 종로구 종로1길 일대',t:['고단백','저지방','채소 충분','혼밥 편함','샐러드 단독 제외'],why:'닭가슴살·채소·곡물 베이스를 한 그릇에 담아 샐러드 단독보다 든든해요.',tip:'이렇게 먹으면 더 좋음 · 현미밥은 반, 크리미한 소스 대신 간장 계열을 가볍게.'},
+ {id:13,p:'마마스 광화문점',m:'닭가슴살 파니니',price:12800,c:'양식',d:550,min:8,a:'서울 종로구 종로3길 일대',t:['고단백','든든하게','혼밥 편함','샐러드 단독 제외'],why:'빵 메뉴 중에서는 닭가슴살이 들어가 단백질과 포만감을 함께 챙기기 쉬운 선택이에요.',tip:'이렇게 먹으면 더 좋음 · 파니니는 3/4만 먹고, 곁들임 감자나 달콤한 음료는 빼세요.'},
+ {id:14,p:'사이공 본가 광화문점',m:'소고기 쌀국수',price:10000,c:'아시안',d:600,min:9,a:'서울 종로구 새문안로 일대',t:['저지방','든든하게','10,000원 이하','혼밥 편함','늦은 점심 가능'],why:'볶음면보다 기름 부담이 낮고 숙주와 소고기를 함께 먹을 수 있는 따뜻한 메뉴예요.',tip:'이렇게 먹으면 더 좋음 · 면은 2/3만 먹고 숙주를 추가해 국물은 남기세요.'},
+ {id:15,p:'본죽&비빔밥 광화문점',m:'곤드레비빔밥',price:10000,c:'한식',d:500,min:7,a:'서울 종로구 새문안로 일대',t:['저지방','채소 충분','든든하게','10,000원 이하','혼밥 편함','늦은 점심 가능','샐러드 단독 제외'],why:'나물 비중이 높아 채소를 챙기면서도 따뜻하고 든든한 한 끼가 돼요.',tip:'이렇게 먹으면 더 좋음 · 밥은 2/3만, 고추장은 한 숟갈보다 적게 넣으세요.'},
+ {id:16,p:'김가네 광화문점',m:'닭가슴살 김밥',price:6500,c:'한식',d:450,min:7,a:'서울 종로구 새문안로 일대',t:['고단백','저지방','10,000원 이하','KPC에서 가까운 곳','혼밥 편함','늦은 점심 가능','샐러드 단독 제외'],why:'시간이 부족한 날 일반 돈가스·참치마요 김밥보다 단백질을 챙기고 지방을 줄이기 좋은 선택이에요.',tip:'이렇게 먹으면 더 좋음 · 라면이나 떡볶이는 더하지 말고, 천천히 한 줄만 드세요.'},
+ {id:17,p:'흥남부두',m:'강된장 보리비빔밥',price:12000,c:'한식',d:170,min:3,a:'서울 종로구 새문안로5가길 13',t:['채소 충분','든든하게','KPC에서 가까운 곳','샐러드 단독 제외'],why:'KPC에서 매우 가깝고 보리밥과 나물을 함께 먹어 채소와 포만감을 챙길 수 있는 계절 메뉴예요.',tip:'이렇게 먹으면 더 좋음 · 밥은 2/3만, 강된장은 조금씩 비비고 반찬은 채소부터 드세요.'},
+ {id:18,p:'정동국시',m:'국시',price:12000,c:'한식',d:800,min:11,a:'서울 중구 정동길 일대',t:['저지방','든든하게','혼밥 편함'],why:'기름진 볶음면 대신 담백한 국물과 고명을 고를 수 있는 면 메뉴예요.',tip:'이렇게 먹으면 더 좋음 · 면은 2/3만 먹고, 고기 고명은 남기지 말며 국물은 적게 드세요.'}
 ];
-let prev=-1;
-function show(x){
-place.textContent=x.p;menu.textContent=x.m;price.textContent=x.price;
-tags.innerHTML=x.tags.map(t=>`<span class="tag">${t}</span>`).join("");
-why.textContent=x.why;tip.textContent=x.tip;score.textContent=x.fit>=5?"식단 적합도 높음":"가끔은 괜찮음";
-toast.classList.add("show");setTimeout(()=>toast.classList.remove("show"),850)
+const catList=['전체','한식','중식','일식','양식','아시안','건강식'];
+const criteriaList=['고단백','저지방','탄수화물 적게','채소 충분','든든하게','10,000원 이하','KPC에서 가까운 곳','혼밥 편함','늦은 점심 가능','샐러드 단독 제외'];
+let selectedCat='전체', current=null, last=null; const excluded=new Set();
+const $=id=>document.getElementById(id), money=n=>n.toLocaleString('ko-KR')+'원';
+function init(){
+ $('categories').innerHTML=catList.map((c,i)=>`<button class="chip" type="button" aria-pressed="${i===0}" data-cat="${c}">${c}</button>`).join('');
+ $('criteria').innerHTML=criteriaList.map(c=>`<label class="check"><input type="checkbox" value="${c}" ${c==='10,000원 이하'||c==='샐러드 단독 제외'?'checked':''}>${c}</label>`).join('');
+ $('categories').addEventListener('click',e=>{if(!e.target.dataset.cat)return;selectedCat=e.target.dataset.cat;document.querySelectorAll('[data-cat]').forEach(x=>x.setAttribute('aria-pressed',String(x===e.target)));pick(true)});
+ $('criteria').addEventListener('change',()=>pick(true));$('pick').onclick=()=>pick(false);$('best').onclick=()=>pick(true);$('reject').onclick=rejectCurrent;$('relax').onclick=reset;
+ const now=new Date();$('date').textContent=`${now.getMonth()+1}월 ${now.getDate()}일`;pick(true);
 }
-function randomPick(){const pool=data.filter(x=>!['13,800원','12,900원'].includes(x.price));let i;do{i=Math.floor(Math.random()*pool.length)}while(i===prev&&pool.length>1);prev=i;show(pool[i])}
-function dietPick(){const d=data.filter(x=>x.fit===5&&!['13,800원','12,900원'].includes(x.price));show(d[Math.floor(Math.random()*d.length)])}
-const now=new Date();date.textContent=`${now.getMonth()+1}월 ${now.getDate()}일`;
-randomPick();
+function chosen(){return [...document.querySelectorAll('.criteria input:checked')].map(x=>x.value)}
+function pool(){const cs=chosen();return menus.filter(x=>!excluded.has(x.id)&&(selectedCat==='전체'||x.c===selectedCat)&&(!cs.includes('10,000원 이하')||x.price<=10000)&&(!cs.includes('샐러드 단독 제외')||!x.salad))}
+function score(x){const cs=chosen().filter(c=>!['10,000원 이하','샐러드 단독 제외'].includes(c));return cs.reduce((n,c)=>n+(x.t.includes(c)?2:0),0)+(x.price<=10000?1:0)+(x.d<=500?1:0)}
+function pick(best){let list=pool();if(!list.length){$('result').style.display='none';$('actions').style.display='none';$('empty').classList.add('show');return}$('result').style.display='block';$('actions').style.display='grid';$('empty').classList.remove('show');
+ if(best){const top=Math.max(...list.map(score));list=list.filter(x=>score(x)===top)}else if(list.length>1&&last){list=list.filter(x=>x.id!==last)} current=list[Math.floor(Math.random()*list.length)];last=current.id;show(current);toast(best?'선택 조건을 반영했어요':'새 메뉴를 골랐어요')}
+function show(x){const hits=chosen().filter(c=>x.t.includes(c));$('place').textContent=x.p;$('menu').textContent=x.m;$('price').textContent=money(x.price);$('category').textContent=x.c;$('distance').textContent=`KPC에서 ${x.min}분 · 약 ${x.d}m`;$('tags').innerHTML=x.t.slice(0,4).map(t=>`<span class="tag">${t}</span>`).join('');$('why').textContent=x.why;$('tip').textContent=x.tip;$('score').textContent=hits.length?`선택 조건 ${hits.length}개 일치`:'식단 조절 가능한 메뉴'}
+function rejectCurrent(){if(!current)return;excluded.add(current.id);toast(`오늘 후보에서 제외 · ${excluded.size}개`);pick(true)}
+function reset(){selectedCat='전체';document.querySelectorAll('[data-cat]').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.cat==='전체')));document.querySelectorAll('.criteria input').forEach(x=>x.checked=['10,000원 이하','샐러드 단독 제외'].includes(x.value));excluded.clear();pick(true)}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').classList.remove('show'),1100)}
+init();
 </script>
-</body></html>
+</body>
+</html>
